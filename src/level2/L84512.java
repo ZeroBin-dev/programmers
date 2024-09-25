@@ -25,7 +25,23 @@ public class L84512 {
   }
 
   public int solution(String word) {
-    int answer = 0;
-    return answer;
+    char[] vowels = {'A', 'E', 'I', 'O', 'U'};
+    int len = vowels.length;
+
+    int[] weights = new int[len];
+
+    for(int i = 0;i<len;i++){
+      for(int j = 0;j<len-i;j++){
+        weights[i] += (int)Math.pow(len, j);
+      }
+    }
+
+    int result = 0;
+
+    for (int i = 0; i < word.length(); i++) {
+      int index = new String(vowels).indexOf(word.charAt(i));
+      result += index * weights[i] + 1;
+    }
+    return result;
   }
 }
